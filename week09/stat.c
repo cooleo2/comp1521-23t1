@@ -21,6 +21,9 @@ int main(int argc, char *argv[]) {
         printf("st_mode = %o\n", s.st_mode);
 
         // TODO: How can we check what kind of filesystem object this is?
+        if (s.st_mode & S_IFDIR) {
+            printf("Is a directory!\n");
+        }
 
         printf("st_uid = %d\n", s.st_uid);
         printf("st_gid = %d\n", s.st_gid);

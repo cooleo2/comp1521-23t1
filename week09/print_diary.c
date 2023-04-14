@@ -1,6 +1,6 @@
 /**
  * Write a C program, print_diary.c,
- * which prints the contents of the file $HOME/.diary to stdout.
+ * which prints the contents of the file $HOME/diary to stdout.
  * 
  * Be sure to handle any errors!
  * snprintf is a convenient function for constructing the pathname of the diary file.
@@ -15,6 +15,14 @@
 
 int main(void) {
     // Get $HOME
+    char *home_dir = getenv("HOME");
+
+    int size_of_string = strlen(home_dir) + strlen("/diary") + 1;
+    char *full_path = malloc(sizeof(char) * size_of_string);
+
+    snprintf(full_path, size_of_string, "%s/diary", home_dir);
+    printf("%s\n",full_path );
+
 
     // TODO: construct full_path in order to open the file 
     FILE *stream = fopen(full_path, "r");
@@ -29,5 +37,8 @@ int main(void) {
     }
 
     fclose(stream);
+
+    
+    free(full_path);
     return 0;
 }
